@@ -32,7 +32,7 @@ class MainViewModel(private val repository: MainDataRepository):ViewModel(), Cor
                 is RequestResult.Error -> {
                     // end load
                     showError.value = result.exception.message
-                    Timber.tag("Http").e(showError.value)
+                    Timber.tag("Http").e("请求失败：${showError.value}")
                 }
             }
         }
