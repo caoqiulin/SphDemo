@@ -1,6 +1,6 @@
 package com.sph.eric.di
 
-import com.sph.eric.repository.MainDataRepository
+import com.sph.eric.repository.MainDataRepositoryImpl
 import org.koin.dsl.module
 
 /**
@@ -10,6 +10,8 @@ import org.koin.dsl.module
 
 val mainRepoModule = module {
     single {
-        MainDataRepository(get())
+
+        MainDataRepositoryImpl(get())
     }
 }
+
