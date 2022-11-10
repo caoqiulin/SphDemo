@@ -2,6 +2,7 @@ package com.sph.eric.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sph.eric.base.BaseModel
 import com.sph.eric.http.RequestResult
 import com.sph.eric.http.SingleLiveEvent
 import com.sph.eric.model.MainDataModel
@@ -17,7 +18,7 @@ import kotlin.coroutines.CoroutineContext
 class MainViewModel(private val repository: MainDataRepository):ViewModel(), CoroutineScope {
     private val job = Job()
 
-    var dataList = MutableLiveData<List<MainDataModel>?>()
+    var data = MutableLiveData<BaseModel<MainDataModel>>()
     var showError = SingleLiveEvent<String>()
 
     fun loadData() {
@@ -26,14 +27,15 @@ class MainViewModel(private val repository: MainDataRepository):ViewModel(), Cor
             when (result) {
                 is RequestResult.Success -> {
                     // notify adapter observe and load next page
-                    dataList.value = result.data.data
-                    Timber.tag("Http").e("json data ==> ${dataList.value}")
+                    data.value = result.result
+//                    Timber.tag("okHttp").d("返回数据：${data.value}")
                 }
                 is RequestResult.Error -> {
                     // end load
                     showError.value = result.exception.message
-                    Timber.tag("Http").e("请求失败：${showError.value}")
+                    Timber.tag("okHttp").d("请求失败：${showError.value}")
                 }
+                else -> {}
             }
         }
     }
