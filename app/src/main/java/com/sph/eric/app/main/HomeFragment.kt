@@ -35,8 +35,8 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
     private val pageAdapter by lazy {
         baseAdapter<Record, ItemMainListBinding> {
             viewBinding.apply {
-                textData.text = it.quarter
-                textYear.text = it.volume_of_mobile_data
+                textData.text = it.volume_of_mobile_data
+                textYear.text = it.quarter
             }
         }.apply {
             setOnItemClickListener(object : OnItemClickListener{
