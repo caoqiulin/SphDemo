@@ -1,5 +1,11 @@
 package com.sph.eric.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.sph.eric.db.converter.RecordConverter
+
 /**
  * @Author: 曹秋淋
  * @Date: 2022/11/8
@@ -18,10 +24,15 @@ data class Field(
     val id: String
 )
 
+@Entity(tableName = "record_list")
+@TypeConverters(RecordConverter::class)
 data class Record(
+    @PrimaryKey @ColumnInfo(name = "id")
+    val _id: Int,
+    @ColumnInfo(name = "data")
     val volume_of_mobile_data: String,
-    val quarter: String,
-    val _id: Int
+    @ColumnInfo(name = "quarter")
+    val quarter: String
 )
 
 data class Link(

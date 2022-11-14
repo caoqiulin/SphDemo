@@ -3,6 +3,7 @@ package com.sph.eric.util
 import android.annotation.SuppressLint
 import android.content.Context
 import com.google.gson.*
+import com.sph.eric.base.MyApplication
 import timber.log.Timber
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
@@ -19,3 +20,5 @@ import java.util.*
  */
 @SuppressLint("StaticFieldLeak")
 lateinit var GlobalContext: Context
+
+lateinit var application: MyApplication
