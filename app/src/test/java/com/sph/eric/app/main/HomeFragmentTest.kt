@@ -22,16 +22,12 @@ class HomeFragmentTest {
     }
 
     @Test
-    fun initVM() {
-    }
-
-    @Test
-    fun initRefreshLayout() {
-    }
-
-    @Test
     fun testMock() {
         val mockHome : HomeFragment = Mockito.mock(HomeFragment::class.java)
         Assert.assertNotNull(mockHome)
+    }
+
+    @Test
+    fun initDB() {
     }
 }

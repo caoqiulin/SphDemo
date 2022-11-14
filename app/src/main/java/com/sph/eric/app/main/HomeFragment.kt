@@ -5,8 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
@@ -14,7 +12,6 @@ import com.sph.eric.R
 import com.sph.eric.base.*
 import com.sph.eric.databinding.FragmentHomeBinding
 import com.sph.eric.databinding.ItemMainListBinding
-import com.sph.eric.db.RecordRoomDatabase
 import com.sph.eric.http.RequestResult
 import com.sph.eric.model.MainDataModel
 import com.sph.eric.model.Record
@@ -34,7 +31,6 @@ import timber.log.Timber
  * @Date: 2022/11/8
  */
 class HomeFragment: Fragment(R.layout.fragment_home) {
-    private val TAG = "HomeFragment"
     private val viewBinding by viewBinding<FragmentHomeBinding>()
     private val viewModel : MainViewModel by viewModel()
 
@@ -89,11 +85,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         })
     }
 
-    private fun initDB() {
-//        recordViewModel.recordList.observe(viewLifecycleOwner) {
-//            recordList = it
-//        }
-
+    fun initDB() {
         CoroutineScope(Dispatchers.IO).launch {
             recordList = recordViewModel.recordList
             if (recordList?.isNotEmpty() == true) {
@@ -103,8 +95,6 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
                 }
             }
         }
-
-//        recordList = recordViewModel.getList()
     }
 
     private fun initRefreshLayout() {
@@ -127,6 +117,10 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
     private fun loadData() {
         viewModel.loadData()
+    }
+
+    companion object {
+        private const val TAG = "HomeFragment"
     }
 
 }
