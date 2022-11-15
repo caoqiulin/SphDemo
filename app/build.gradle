@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-
+        buildConfigField "String", "BASE_URL", '"https://data.gov.sg/api/action/"'
     }
 
     buildTypes {
@@ -67,6 +67,7 @@ dependencies {
 
     // 协程核心库
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     // 协程Android支持库
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
     // lifecycle对于协程的扩展封装

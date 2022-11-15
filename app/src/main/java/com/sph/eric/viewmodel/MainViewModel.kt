@@ -23,12 +23,10 @@ class MainViewModel(private val repository: MainDataRepository):ViewModel(), Cor
 
     fun loadData() {
         launch {
-            val result = withContext(Dispatchers.IO) {repository.getMainDataList()}
-            when (result) {
+            when (val result = withContext(Dispatchers.IO) {repository.getMainDataList()}) {
                 is RequestResult.Success -> {
                     // notify adapter observe and load next page
                     data.value = result.result
-//                    Timber.tag("okHttp").d("返回数据：${data.value}")
                 }
                 is RequestResult.Error -> {
                     // end load

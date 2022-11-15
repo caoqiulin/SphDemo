@@ -26,15 +26,13 @@ import java.util.concurrent.TimeUnit
  * @Author: 曹秋淋
  * @Date: 2022/11/8
  */
-private const val BaseURL = "https://data.gov.sg/api/action/"
-
 val netWorkModule = module {
     single {
-        createWebService<ApiService>(
+        createWebService(
             okHttpClient = createHttpClient(),
             factory = RxJava2CallAdapterFactory.create(),
-            baseUrl = BaseURL
-        )
+            baseUrl = BuildConfig.BASE_URL
+        ).create(ApiService::class.java)
     }
     // create an instance
     factory<MainDataRepository> { MainDataRepositoryImpl(api = get()) }
@@ -75,16 +73,15 @@ fun createHttpClient(): OkHttpClient {
 }
 
 /* function to build our Retrofit service */
-inline fun <reified T> createWebService(
+fun createWebService(
     okHttpClient: OkHttpClient,
     factory: CallAdapter.Factory, baseUrl: String
-): T {
-    val retrofit = Retrofit.Builder()
+): Retrofit {
+    return Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .addCallAdapterFactory(factory)
         .client(okHttpClient)
         .build()
-    return retrofit.create(T::class.java)
 }

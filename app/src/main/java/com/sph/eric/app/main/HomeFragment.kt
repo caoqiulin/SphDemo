@@ -89,7 +89,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         })
     }
 
-    fun initDB() {
+    private fun initDB() {
         CoroutineScope(Dispatchers.IO).launch {
             recordList = recordViewModel.recordList
             if (recordList?.isNotEmpty() == true) {
