@@ -26,12 +26,12 @@ class RecordDBRepository(private val recordDAO: RecordDAO) {
     }
 
     @WorkerThread
-    suspend fun getRecordByYear(year: String): List<Record> {
+    fun getRecordByYear(year: String): List<Record> {
         return recordDAO.getRecordByYear(year = year)
     }
 
     @WorkerThread
-    suspend fun getYearList(): List<String> {
+    fun getYearList(): List<String> {
         return recordDAO.getYearList()
     }
 

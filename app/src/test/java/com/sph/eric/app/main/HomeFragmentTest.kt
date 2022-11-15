@@ -1,5 +1,9 @@
 package com.sph.eric.app.main
 
+import androidx.fragment.app.viewModels
+import com.sph.eric.util.application
+import com.sph.eric.viewmodel.RecordViewModel
+import com.sph.eric.viewmodel.RecordViewModelFactory
 import org.junit.Assert
 import org.junit.Before
 
@@ -11,14 +15,9 @@ import org.mockito.Mockito
  * @Date: 2022/11/11
  */
 class HomeFragmentTest {
-
     @Before
     fun setUp() {
 
-    }
-
-    @Test
-    fun initVB() {
     }
 
     @Test
@@ -27,7 +26,10 @@ class HomeFragmentTest {
         Assert.assertNotNull(mockHome)
     }
 
+
     @Test
     fun initDB() {
+        val viewModel = RecordViewModelFactory(application.recordDBRepository).create(RecordViewModel::class.java)
+
     }
 }

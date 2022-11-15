@@ -61,7 +61,13 @@ class AmountFragment: Fragment(R.layout.fragment_amount) {
                 (tabs as ArrayList<String>).add(tab)
             }
 
-            requireActivity().runOnUiThread { viewBinding.setupPager() }
+            requireActivity().runOnUiThread {
+                viewBinding.setupPager()
+                for ((position, y) in (yearList as java.util.ArrayList<String>).withIndex()) {
+                    if (y == mYear)
+                        viewBinding.tabLayout.selectTab(viewBinding.tabLayout.getTabAt(position))
+                }
+            }
         }
     }
 
