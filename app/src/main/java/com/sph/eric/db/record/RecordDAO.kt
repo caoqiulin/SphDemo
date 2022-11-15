@@ -15,8 +15,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RecordDAO {
 
-    @Query("SELECT * FROM record_list")// ORDER BY quarter DESC
+    @Query("SELECT * FROM record_list ORDER BY quarter DESC")
     fun getRecordList() : List<Record>
+
+    @Query("SELECT * FROM record_list WHERE year = :year")
+    fun getRecordByYear(year: String) : List<Record>
+
+    @Query("SELECT * FROM (select year from record_list group by year) tmp")
+    fun getYearList(): List<String>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(record: Record)

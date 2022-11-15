@@ -30,6 +30,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name="com.sph.eric.app.main.TabActivity" />
     </application>
 
 </manifest>

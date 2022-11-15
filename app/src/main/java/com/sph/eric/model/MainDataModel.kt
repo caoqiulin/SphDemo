@@ -32,7 +32,9 @@ data class Record(
     @ColumnInfo(name = "data")
     val volume_of_mobile_data: String,
     @ColumnInfo(name = "quarter")
-    val quarter: String
+    val quarter: String,
+    @ColumnInfo(name = "year")
+    var year: String
 )
 
 data class Link(

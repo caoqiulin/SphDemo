@@ -16,6 +16,7 @@ class RecordViewModel(private val recordDBRepository: RecordDBRepository): ViewM
         recordDBRepository.deleteAll()
 //        recordDBRepository.insertRecord(list)
         for (record in list) {
+            record.year = record.quarter.substring(0,4)
             recordDBRepository.insert(record = record)
         }
     }

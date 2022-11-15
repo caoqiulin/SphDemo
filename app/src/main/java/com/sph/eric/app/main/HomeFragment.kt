@@ -53,7 +53,11 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
                     view: View,
                     position: Int
                 ) {
-                    //TODO
+                    val item = getItemData<Record>(position) ?: return
+                    TabActivity.start(
+                        context = requireActivity(),
+                        year = item.year
+                    )
                 }
             })
         }
